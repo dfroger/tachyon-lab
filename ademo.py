@@ -1,20 +1,21 @@
 import asyncio
 
+DELAY = 0.5
 
 async def pre_processing():
-    await asyncio.sleep(0.5)
+    await asyncio.sleep(DELAY)
 
 
 async def foo():
-    await asyncio.sleep(0.1)
+    await asyncio.sleep(DELAY)
 
 
 async def bar():
-    await asyncio.sleep(0.2)
+    await asyncio.sleep(DELAY)
 
 
 async def baz():
-    await asyncio.sleep(0.3)
+    await asyncio.sleep(DELAY)
 
 
 async def sub_processing():
@@ -32,11 +33,11 @@ async def processing():
 
 
 async def post_processing():
-    await asyncio.sleep(0.5)
+    await asyncio.sleep(DELAY)
 
 
 async def request():
-    await sub_processing()
+    await pre_processing()
     await processing()
     await post_processing()
 

@@ -1,3 +1,5 @@
+# Tachyon as a timeline profiler
+
 Create environment (one-time):
 
 ```bash
@@ -16,5 +18,7 @@ source venv/bin/activate
 Run profiler:
 
 ```bash
-python -m profiling.sampling run --async-aware --flamegraph -o demo.html demo.py
+python -m profiling.sampling run --gecko -o tdemo.json --all-threads tdemo.py
+python -m profiling.sampling run --gecko -o ademo.json --async-aware ademo.py
+python -m profiling.sampling run --gecko -o pdemo.json --subprocesses pdemo.py
 ```
