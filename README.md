@@ -3,14 +3,17 @@
 Create environment (one-time):
 
 ```bash
-sudo apt-get install libzstd-dev
-pyenv install 3.15.0b3
+$ sudo apt-get install libzstd-dev
+$ pyenv install 3.15.dev
 ```
 
 Activate environemnt:
 
 ```bash
-pyenv shell 3.15.0b3
+$ pyenv shell 3.15.dev
+$ python -c "import sys; print(sys.version)"
+3.15.0b3+dev (heads/3.15:9fcebd3, Jul 16 2026, 13:57:38) [GCC 11.4.0]
+
 ```
 
 ## Threads
@@ -18,7 +21,7 @@ pyenv shell 3.15.0b3
 The timeline for threads:
 
 ```bash
-python -m profiling.sampling run --gecko -o outputs/tdemo.json --all-threads  scripts/tdemo.py
+$ python -m profiling.sampling run --gecko -o outputs/tdemo.json --all-threads  scripts/tdemo.py
 ```
 
 ![tdemo](screenshots/tdemo.png)
@@ -78,44 +81,7 @@ The timeline for asyncio tasks:
 python -m profiling.sampling run --gecko -o outputs/ademo.json --async-aware --async-mode=all  scripts/ademo.py
 ```
 
-fails with:
-
-```python
-Traceback (most recent call last):
-  File "<frozen runpy>", line 201, in _run_module_as_main
-  File "<frozen runpy>", line 87, in _run_code
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/__main__.py", line 65, in <module>
-    main()
-    ~~~~^^
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/cli.py", line 977, in main
-    _main()
-    ~~~~~^^
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/cli.py", line 1133, in _main
-    handler(args)
-    ~~~~~~~^^^^^^
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/cli.py", line 1280, in _handle_run
-    collector = sample(
-        process.pid,
-    ...<9 lines>...
-        blocking=args.blocking,
-    )
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/sample.py", line 529, in sample
-    profiler.sample(collector, duration_sec, async_aware=async_aware)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/sample.py", line 192, in sample
-    raise e from None
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/sample.py", line 173, in sample
-    flush_pending()
-    ~~~~~~~~~~~~~^^
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/sample.py", line 152, in flush_pending
-    collector.collect(prev_stack, timestamps_us=ts)
-    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/dfroger/.pyenv/versions/3.15.0b3/lib/python3.15/profiling/sampling/gecko_collector.py", line 255, in collect
-    for thread_info in interpreter_info.threads:
-                       ^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: '_remote_debugging.AwaitedInfo' object has no attribute 'threads'. Did you mean '.thread_id' instead of '.threads'?
-```
-
+![ademo](screenshots/ademo.png)
 
 I would expected:
 
