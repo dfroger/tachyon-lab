@@ -5,14 +5,12 @@ Create environment (one-time):
 ```bash
 sudo apt-get install libzstd-dev
 pyenv install 3.15.0b3
-pyenv shell 3.15.0b3
-python -m venv venv
 ```
 
 Activate environemnt:
 
 ```bash
-source venv/bin/activate
+pyenv shell 3.15.0b3
 ```
 
 ## Threads
