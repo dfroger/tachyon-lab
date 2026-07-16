@@ -43,3 +43,17 @@ Thread-3              [          sub_processing          ]
 
 - `ademo.py`: `Task-1` intead of `Thread-1`,
 - `pdemo.py`: `Process-1` intead of `Thread-1`.
+
+## Firefox Profiler screenshots
+
+`tdemo.py` (threads):
+
+![tdemo](screenshots/tdemo.png)
+
+`ademo.py` ( asyncio tasks):
+
+![ademo](screenshots/ademo.png)
+
+`pdemo.py` (subprocesses):
+
+![pdemo](screenshots/pdemo.png)
