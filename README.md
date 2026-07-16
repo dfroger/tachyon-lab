@@ -15,7 +15,7 @@ Activate environemnt:
 source venv/bin/activate
 ```
 
-# Threads
+## Threads
 
 The timeline for threads:
 
@@ -44,7 +44,7 @@ Thread-3              [          sub_processing          ]
 ```
 
 
-# Processes
+## Processes
 
 The timeline for processes:
 
@@ -72,7 +72,7 @@ Process-3             [          sub_processing          ]
                       [   foo    ][   bar    ][   baz    ]
 ```
 
-# Asyncio Tasks
+## Asyncio Tasks
 
 The timeline for asyncio tasks:
 
@@ -116,4 +116,23 @@ Traceback (most recent call last):
     for thread_info in interpreter_info.threads:
                        ^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: '_remote_debugging.AwaitedInfo' object has no attribute 'threads'. Did you mean '.thread_id' instead of '.threads'?
+```
+
+
+I would expected:
+
+```
+Time (s)  0.0         0.5         1.0         1.5         2.0         2.5
+          |           |           |           |           |           |
+Main      [                         request                          ]
+          [ pre_proc ][            processing            ][post_proc ]
+
+Task-1                [          sub_processing          ]
+                      [   foo    ][   bar    ][   baz    ]
+
+Task-2                [          sub_processing          ]
+                      [   foo    ][   bar    ][   baz    ]
+
+Task-3                [          sub_processing          ]
+                      [   foo    ][   bar    ][   baz    ]
 ```
